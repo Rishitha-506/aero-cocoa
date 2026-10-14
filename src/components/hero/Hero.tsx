@@ -113,7 +113,7 @@ export const Hero: React.FC = () => {
             {/* Airplane Image */}
             <div className="relative w-full max-w-lg lg:max-w-xl">
               <img
-                src="/assets/hero-airplane.png"
+                src={`${import.meta.env.BASE_URL}assets/hero-airplane.png`}
                 alt="Aéro Cocoa 3D airplane soaring gracefully through soft pastel clouds"
                 className="w-full h-auto object-contain drop-shadow-2xl animate-float-gentle select-none pointer-events-none"
                 loading="eager"
