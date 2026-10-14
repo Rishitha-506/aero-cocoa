@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-vanilla: #F8EFE4;
+    --color-cocoa: #754C3B;
+    --color-chocolate: #422B25;
+    --color-blush: #EFC9CE;
+    --color-latte: #DCC8B1;
+    --color-sage: #DCE9E2;
+    --color-white: #FFFFFF;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: #F8EFE4;
+    color: #422B25;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F8EFE4;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #DCC8B1;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #754C3B;
+  }
+}
+
+@layer components {
+  /* Translucent cream surface with soft warm blur */
+  .glass-cream {
+    background-color: rgba(248, 239, 228, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(220, 200, 177, 0.6);
+  }
+
+  /* Translucent deep chocolate surface */
+  .glass-chocolate {
+    background-color: rgba(66, 43, 37, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(117, 76, 59, 0.4);
+    color: #F8EFE4;
+  }
+
+  /* Soft card elevation */
+  .card-cream {
+    background-color: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(220, 200, 177, 0.5);
+    box-shadow: 0 10px 30px -5px rgba(66, 43, 37, 0.07);
+  }
+
+  /* Luxury ticket serrated / dotted edge */
+  .ticket-border-dashed {
+    border-style: dashed;
+    border-color: rgba(117, 76, 59, 0.25);
+  }
+
+  /* Soft cloud gradient backdrop */
+  .bg-cloud-gradient {
+    background: radial-gradient(circle at 75% 20%, rgba(239, 201, 206, 0.35) 0%, transparent 60%),
+                radial-gradient(circle at 20% 60%, rgba(220, 200, 177, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(220, 233, 226, 0.3) 0%, transparent 60%),
+                #F8EFE4;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* Paper airplane doodle — CSS Motion Path flight                  */
+/* Each plane's offset-path is set as a viewport-sized cubic       */
+/* bezier from JS. This keyframe drives offset-distance 0→100%    */
+/* with a smooth opacity fade in/out at the edges.                 */
+/* ─────────────────────────────────────────────────────────────── */
+@keyframes paperPlaneFly {
+  0%   { offset-distance: 0%;   opacity: 0; }
+  6%   { offset-distance: 6%;   opacity: var(--target-opacity, 0.12); }
+  50%  { offset-distance: 50%;  opacity: var(--target-opacity, 0.12); }
+  92%  { offset-distance: 92%;  opacity: var(--target-opacity, 0.12); }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+/* Gentle side-to-side banking wobble — stacks on top of offset-rotate */
+@keyframes paperPlaneWobble {
+  0%, 100% { transform: rotateZ(-4deg) translateY(-2px); }
+  50%      { transform: rotateZ(4deg)  translateY(2px); }
+}
+
+/* Reduced motion preference respect */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
